@@ -58,6 +58,7 @@ negation_triggers[NegationContext.NEGATED, 'phrase', 'preceding'] = [
     'waren niet', 
     'was geen',
     'was niet',
+    'weinig',
     'zijn geen', 
     'zijn niet',
     'zonder indicatie van ',
@@ -69,18 +70,22 @@ negation_triggers[NegationContext.NEGATED, 'phrase', 'preceding'] = [
 negation_triggers[NegationContext.NEGATED, 'phrase', 'following'] = [
     # 'in remissie', eigenlijk is dit temporeel
     'afwezig',
+    'geen',
     'is uitgesloten',
     'is verdwenen',
     'is weg',
     'kan worden uitgesloten',
     'laag ingeschat',
     'nam af',
+    'niet',
+    'nee',
     'niet aan de orde',
     'niet aanwezig',
     'niet besproken',
     'niet gezien',
     'niet meer',
     'niet waarschijnlijk',  
+    'nooit',
     'onwaarschijnlijk',
     'opgelost',
     'preventieplan',
@@ -99,13 +104,15 @@ negation_triggers[NegationContext.NEGATED, 'phrase', 'following'] = [
 ]
 
 negation_triggers[NegationContext.NEGATED, 'phrase', 'pseudo'] = [
-    'geen afname',
-    'geen oorzaak van',
-    'geen toename',
-    'geen verandering',
-    'geen verbetering',
-    'geen verdere',
-    'geen zekere verandering',
+# =============================================================================
+#     'geen afname',
+#     'geen oorzaak van',
+#     'geen toename',
+#     'geen verandering',
+#     'geen verbetering',
+#     'geen verdere',
+#     'geen zekere verandering',
+# =============================================================================
     'gram negatief',
     'herkent zich niet',
     'is misschien niet',
@@ -115,7 +122,7 @@ negation_triggers[NegationContext.NEGATED, 'phrase', 'pseudo'] = [
     'mogelijk niet',
     'niet alleen',
     'niet besproken',
-    'niet duidelijk',
+    'niet duidelijk', 
     'niet gevraagd',
     'niet mogelijk om ',
     'niet noodzakelijkerwijs',
@@ -151,6 +158,7 @@ negation_triggers[NegationContext.NEGATED, 'phrase', 'termination'] = [
     'desalniettemin',
     'die', 
     'doch',
+    'en hij niet meer',
     'etiologie van',
     'etiologie voor',
     'hetgeen',
@@ -177,6 +185,7 @@ negation_triggers[NegationContext.NEGATED, 'phrase', 'termination'] = [
     'wel',
     'welke',
     ',',
+    ')',
 ]
 
 ### Patterns
@@ -207,7 +216,10 @@ negation_triggers[NegationContext.NEGATED, 'pattern', 'termination'] = [
      {'LOWER' : {'IN' : ['bron', 'bronnen', 'reden', 'redenen', 'oorzaak', 'oorzaken', 'oorsprong', 'etiologie']}},
      {'LOWER' : {'IN' : ['van', 'voor', 'tot']}}
     ],
-
+    
+    [{'POS': 'VERB'},
+     {'LOWER': 'en'}
+    ],
 ]
 
 ### Regexps
