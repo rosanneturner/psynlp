@@ -1,5 +1,5 @@
 
-# `psynlp` --- NLP functionality adapted for detecting moments of change in clinical psychiatry notes
+# `psynlp` --- fork of original package adapted for detecting moments of change in clinical psychiatry notes
 
 This package bundles some functionality for applying NLP (preprocessing) techniques to clinical text in psychiatry. Specifically, it contains the following `submodules`: 
 
