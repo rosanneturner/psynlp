@@ -3,7 +3,7 @@ from enum import Enum
 class TemporalityContext(Enum):
     CURRENT = 1
     HISTORICAL = 2
-    CONTINUOUS = 3
+    #CONTINUOUS = 3
 
 temporality_triggers = {}
 
@@ -17,6 +17,9 @@ temporality_triggers[TemporalityContext.HISTORICAL, 'phrase', 'preceding'] = [
     'als tiener',
     'bij eerste presentatie',
     'destijds',
+    'eerder bij',
+    'eerder zijn',
+    'eerder deze week',
     'eerdere',
     # 'eerste', # Twijfelgeval, bv "Destijds eerste psychose doorgemaakt", vs "Dit is zijn eerste psychose"
     'gedocumenteerd',
@@ -42,9 +45,10 @@ temporality_triggers[TemporalityContext.HISTORICAL, 'phrase', 'preceding'] = [
     'toen',
     'verleden van',
     'vg',
+    'voorafgaand', #aan opname
     'voorgeschiedenis',
     'vroeger', 
-    'werd',
+#    'werd', #kan ook 'vannacht' of 'eerder op de dag' zijn
 #     'lijkt',
 #     'reeds bekende', # Kan ook recent zijn?
 #     'sinds', # dubieus
@@ -75,6 +79,7 @@ temporality_triggers[TemporalityContext.HISTORICAL, 'phrase', 'following'] = [
     'is gebeurd',
     'is geweest',
     'meegemaakt',
+    'nu echter',
     'nu in remissie',
     'op jong volwassen leeftijd',
     'op jonge leeftijd',
@@ -87,6 +92,7 @@ temporality_triggers[TemporalityContext.HISTORICAL, 'phrase', 'pseudo'] = [
     'blanco psychiatrische voorgeschiedenis',
     'blanco vg', 
     'blanco voorgeschiedenis',
+    'eerder vanavond',
     'lijkt meer', 
     'lijkt minder',
     'lijkt niet meer',
@@ -101,92 +107,100 @@ temporality_triggers[TemporalityContext.HISTORICAL, 'phrase', 'termination'] = [
     'afname',
     'nu',
     'primair',
-    'toegenomen',
-    'toename',
-    ',',
+    '-',
+#    'toegenomen',
+#    'toename', hier over nadenken, wat voor zin zou dit zin hebben
+#   ',',
 ]
 
-temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'preceding'] = [
-    # afname 
-    # continuous
-    # toename
-    'aanhouden van',
-    'aanhoudende', 
-    'afgenomen', 
-    'afname',
-    'al',
-    'bekend met',
-    'blijft',
-    'blijvende', 
-    'langer bestaande', 
-    'meer',
-    'minder', 
-    'nog', 
-    'oplopen van',
-    'oplopende', 
-    'persisterend',
-    'reeds',
-    'sedert', 
-    'sinds',
-    'sindsdien',
-    'toegenomen', 
-    'toename', 
-    'toenemende', 
-    'vanaf',
-    'verbeterde', 
-    'verbetering',
-    'verergering',
-    'vermindering', 
-    'verminderen',
-    'verslechterde',
-    'verslechtering',
-    'voortdurende', 
+# =============================================================================
+# temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'preceding'] = [
+#     # afname 
+#     # continuous
+#     # toename
+#     'aanhouden van',
+#     'aanhoudende', 
+#     'afgenomen', 
+#     'afname',
+#     'al',
+#     'bekend met',
+#     'blijft',
+#     'blijvende', 
+#     'langer bestaande', 
+#     'meer',
+#     'minder', 
+#     'nog', 
+#     'oplopen van',
+#     'oplopende', 
+#     'persisterend',
+#     'reeds',
+#     'sedert', 
+#     'sinds',
+#     'sindsdien',
+# #    'toegenomen', 
+# #    'toename', 
+# #    'toenemende', 
+#     'vanaf',
+#     'verbeterde', 
+#     'verbetering',
+#     'verergering',
+#     'vermindering', 
+#     'verminderen',
+#     'verslechterde',
+#     'verslechtering',
+#     'voortdurende', 
+# 
+# ]
+# =============================================================================
 
-]
-
-temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'following'] = [
-    # afname 
-    # continuous
-    # toename
-    'afgenomen',
-    'afneemt', 
-    'afnemen',
-    'afnemende',
-    'blijft',
-    'blijven', 
-    'doorgaan', 
-    'langer bestaand',
-    'loopt op', 
-    'neemt af', 
-    'neemt toe',
-    'onveranderd', 
-    'onverminderd',
-    'oploopt',
-    'oplopen',
-    'opspelen', 
-    'persisteert',
-    'recidiverend', #? 
-    'toeneemt',
-    'toenemen',
-    'verbeterd',
-    'verergeren', 
-    'verhoogd',
-    'verminderd', 
-    'verslechterd',
-    'voortbestaan',
-    'voortduren', 
-    'zijn toegenomen',
-]
-
-temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'pseudo'] = [
-    'nog niet',
-    'nog geen',
-]
-
-temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'termination'] = [
-    ',',
-]
-
+# =============================================================================
+# temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'following'] = [
+#     # afname 
+#     # continuous
+#     # toename
+#     'afgenomen',
+#     'afneemt', 
+#     'afnemen',
+#     'afnemende',
+#     'blijft',
+#     'blijven', 
+#     'doorgaan', 
+#     'het laatste jaar',
+#     'langer bestaand',
+#     'loopt op', 
+#     'neemt af', 
+#     'neemt toe',
+#     'onveranderd', 
+#     'onverminderd',
+#     'oploopt',
+#     'oplopen',
+#     'opspelen', 
+#     'persisteert',
+#     'recidiverend', #? 
+#     'toeneemt',
+#     'toenemen',
+#     'verbeterd',
+#     'verergeren', 
+#     'verhoogd',
+#     'verminderd', 
+#     'verslechterd',
+#     'voortbestaan',
+#     'voortduren', 
+#     'zijn toegenomen',
+# ]
+# 
+# =============================================================================
+# =============================================================================
+# temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'pseudo'] = [
+#     'nog niet',
+#     'nog geen',
+# ]
+# 
+# temporality_triggers[TemporalityContext.CONTINUOUS, 'phrase', 'termination'] = [
+#     ',',
+# ]
+# 
+# =============================================================================
 
 ### Patterns ###
 
@@ -279,32 +293,36 @@ temporality_triggers[TemporalityContext.HISTORICAL, 'pattern', 'termination'] = 
 
 ]
 
-temporality_triggers[TemporalityContext.CONTINUOUS, 'pattern', 'preceding'] = [
+# =============================================================================
+# temporality_triggers[TemporalityContext.CONTINUOUS, 'pattern', 'preceding'] = [
+# 
+#     # De afgelopen/laatste tijd/weken/maanden/jaren
+#     [
+#      {'LOWER' : {'IN' : ['laatste', 'afgelopen', 'voorgaande']}},
+#      {'LOWER' : {'IN' : ['tijd', 'weken', 'maanden', 'jaren']}}
+#     ],
+# 
+#     # sinds/vanaf <maand>
+#     [
+#      {'LOWER' : {'IN' : ['sinds', 'vanaf']}},
+#      {'LOWER' : {'IN' : months}}
+#     ],
+# 
+# ]
+# =============================================================================
 
-    # De afgelopen/laatste tijd/weken/maanden/jaren
-    [
-     {'LOWER' : {'IN' : ['laatste', 'afgelopen', 'voorgaande']}},
-     {'LOWER' : {'IN' : ['tijd', 'weken', 'maanden', 'jaren']}}
-    ],
-
-    # sinds/vanaf <maand>
-    [
-     {'LOWER' : {'IN' : ['sinds', 'vanaf']}},
-     {'LOWER' : {'IN' : months}}
-    ],
-
-]
-
-temporality_triggers[TemporalityContext.CONTINUOUS, 'pattern', 'following'] = [
-
-    # sinds/vanaf <maand>
-    [
-     {'LOWER' : {'IN' : ['sinds', 'vanaf']}},
-     {'LOWER' : {'IN' : months}}
-    ],
-
-]
-
+# =============================================================================
+# temporality_triggers[TemporalityContext.CONTINUOUS, 'pattern', 'following'] = [
+# 
+#     # sinds/vanaf <maand>
+#     [
+#      {'LOWER' : {'IN' : ['sinds', 'vanaf']}},
+#      {'LOWER' : {'IN' : months}}
+#     ],
+# 
+# ]
+# 
+# =============================================================================
 
 
 
@@ -312,6 +330,8 @@ temporality_triggers[TemporalityContext.CONTINUOUS, 'pattern', 'following'] = [
 ### Regexps
 temporality_triggers[TemporalityContext.HISTORICAL, 'regexp', 'preceding'] = [
     r'op [\d\-/]+ jarige leeftijd',
+    r'\d{4}', #jaartal 
+    r'\d{2}-\d{2}', #datum: 01-01
 ]
 
 temporality_triggers[TemporalityContext.HISTORICAL, 'regexp', 'following'] = [
