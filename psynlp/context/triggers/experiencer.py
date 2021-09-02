@@ -6,9 +6,12 @@ class ExperiencerContext(Enum):
 
 experiencer_triggers = {}
 
-persons = ['vader', 'vdr', 'moeder', 'mdr', 'broer', 'broertje', 'zus', 'zusje', 'oom', 'tante', 'neef', 'neefje', 'nicht', 'nichtje', 'opa', 'oma', 'grootvader', 'grootmoeder', 'buurman', 'buurvrouw', 'zoon', 'zoontje', 'dochter', 'dochtertje', 'huisgenoot', 'huisgenote', 'familie']
-persons_plural = ['broers', 'broertjes', 'zussen', 'zusjes', 'ooms', 'tantes', 'neven', 'neefjes', 'nichten', 'nichtjes', 'zoons', 'zoontjes', 'dochters', 'dochtertjes', 'huisgenoten', 'huisgenotes']
+persons = ['vader', 'vdr', 'moeder', 'mdr', 'broer', 'broertje', 'zus', 'zusje', 'oom', 'tante', 'neef', 'neefje', 'nicht', 'nichtje', 'opa', 'oma', 'grootvader', 'grootmoeder', 'buurman', 'buurvrouw', 'zoon', 'zoontje', 'dochter', 'dochtertje', 'huisgenoot', 'huisgenote', 'familie', 'fam', 'voogd', 'papa', 'mama', 'pleegvader', 'pleegmoeder', 'schoonzus', 'schoonbroer', 'zwager', 'zuster', 'partner', 'echtgenoot', 'echtgenote', 'vriend', 'vriendje', 'vriendin', 'vriendinnetje', 'medepatient', 'medepatiente', 'medept', 'groepsgenoot',
+'groepsgenote', 'gg', 'klasgenoot', 'klasgenote', 'medeleerling', 'medestudent', 'buurjongen', 'buurmeisje']
+persons_plural = ['broers', 'broertjes', 'zussen', 'zusjes', 'ooms', 'tantes', 'neven', 'neefjes', 'nichten', 'nichtjes', 'zoons', 'zoontjes', 'dochters', 'dochtertjes', 'huisgenoten', 'huisgenotes', 'ouders', 'grootouders', 'stiefouders', 'pleegouders', 'buren', 'vrienden', 'vriendinnen', 'vriendinnetjes', 'ggn', 'ggen', 'groepsgenoten', 'klasgenoten', 'medeleerlingen', 'medestudenten', 'medepatienten', 'medepten', 'anderen']
 
+persons_professional =  ['juf', 'mentor', 'decaan', 'collega', 'werkgever', 'begeleider', 'woonbegeleider', 'trajectbegeleider', 'behandelaar', 'therapeut', 'psychotherapeut', 'psychiater', 'psycholoog', 'dienstdoende', 'arts', 'groepsleiding', 'verpl', 'verpleging', 'verpleegkundige', 'buurtteam', 'wijkteam', 'crisisdienst', 'zorgverlener', 'og', 'advocaat', 'tolk', 'chirurg', 'vrijwilliger']
+persons_professional_plural = ['zorgverleners', 'buurtteams', 'wijkteams', 'therapeuten', 'psychotherapeuten', 'behandelaren',  'behandelaars', 'artsen', 'verpleegkundigen', 'vpken', 'psychiaters', 'psychologen', 'vrijwilligers']
 ### Phrases
 experiencer_triggers[ExperiencerContext.OTHER, 'phrase', 'preceding'] = [
     'familiair',
@@ -102,7 +105,7 @@ experiencer_triggers[ExperiencerContext.OTHER, 'pattern', 'pseudo'] = [
     # broers zeiden
     # broers vonden
     [{'LOWER' : {'IN' : persons + persons_plural}},
-     {'LOWER' : {'IN' : ['belde', 'belden', 'zei', 'zeiden', 'vond', 'vonden', 'vertelt', 'vertelde', 'vertellen', 'vertelden']}}
+     {'LOWER' : {'IN' : ['belde', 'belden', 'zei', 'zeiden', 'maakte', 'vond', 'vonden', 'vertelt', 'vertelde', 'vertellen', 'vertelden']}}
     ],
 
     # broef gaf aan
@@ -110,6 +113,13 @@ experiencer_triggers[ExperiencerContext.OTHER, 'pattern', 'pseudo'] = [
     [{'LOWER' : {'IN' : persons + persons_plural}},
      {'LOWER' : {'IN' : ['gaf', 'gaven']}},
      {'LOWER' : {'IN' : ['aan']}}
+    ],
+    
+    # overlijden van zijn haar familielid
+    [{'LOWER': 'overlijden'},
+     {'LOWER': 'van'},
+     {'LOWER' : {'IN' : ['zijn', 'haar']}},
+     {'LOWER' : {'IN' : persons + persons_plural}},
     ],
 ]
 
