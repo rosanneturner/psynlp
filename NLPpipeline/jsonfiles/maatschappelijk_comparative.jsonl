@@ -1,0 +1,12 @@
+{"label":"maatsch_comparative","pattern":"socialer","sentiment":"1"}
+{"label":"maatsch_comparative","pattern":"zelfredzamer","sentiment":"1"}
+{"label":"maatsch_comparative","pattern":"afhankelijker","sentiment":"-1"}
+{"label":"maatsch_comparative","pattern":"onafhankelijker","sentiment":"1"}
+{"label":"maatsch_comparative","pattern":"maatschappelijker","sentiment":"1"}
+{"label":"maatsch_comparative","pattern":"asocialer","sentiment":"-1"}
+{"label":"maatsch_comparative","pattern":"zelfstandiger","sentiment":"1"}
+{"label":"maatsch_comparative","pattern":"onzelfstandiger","sentiment":"-1"}
+{"label":"maatsch_comparative","pattern":"verantwoordelijker","sentiment":"1"}
+{"label":"maatsch_comparative","pattern":"onverantwoordelijker","sentiment":"-1"}
+{"label":"maatsch_comparative","pattern":"autonomer","sentiment":"1"}
+{"label":"maatsch_comparative","pattern":"opener","sentiment":"1"}
